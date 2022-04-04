@@ -49,7 +49,7 @@ jobs:
       - uses: actions/setup-go@v2
         with:
           go-version: ${{ env.GO_VERSION }}
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3.0.1
         if: ${{ !env.ACT }}
         with:
           path: ~/go/pkg/mod
@@ -69,7 +69,7 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3.0.1
         id: image_cache
         with:
           key: ${{ env.CACHED_DOCKER_IMAGES_KEY }}
@@ -100,7 +100,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Restore Docker Image Cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3.0.1
         id: image_cache
         continue-on-error: true
         with:
@@ -111,14 +111,14 @@ jobs:
       - uses: actions/setup-go@v2
         with:
           go-version: ${{ env.GO_VERSION }}
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3.0.1
         if: ${{ !env.ACT }}
         with:
           path: ~/go/pkg/mod
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3.0.1
         with:
           key: boot2docker
           path: ${{ env.ISO_PATH }}
@@ -168,7 +168,7 @@ jobs:
       - uses: actions/setup-go@v2
         with:
           go-version: ${{ env.GO_VERSION }}
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3.0.1
         if: ${{ !env.ACT }}
         with:
           path: ~/go/pkg/mod
